@@ -469,7 +469,7 @@ Type: 요약 내용 (#이슈번호)
 
 ## 2. 프로젝트 개요
 
-### 2.1 프로젝트 목표와 범
+### 2.1 프로젝트 목표와 범위
 
 <!-- 세개의 병렬 이미지로 넣기  figure/figurecaption-->
 
@@ -583,19 +583,54 @@ Type: 요약 내용 (#이슈번호)
 ## 5. 프로젝트 구조
 
 ```
-📦 project_root
- ┣ 📂 assets
- ┃ ┣ 📂 css
- ┃ ┣ 📂 js
- ┃ ┗ 📂 images
- ┣ 📂 pages
- ┃ ┣ 📂 product
- ┃ ┣ 📂 cart
- ┃ ┗ 📂 login
- ┣ 📜 index.html
- ┗ 📜 README.md
+root
+┣ .github
+┃ ┗ ISSUE_TEMPLATE
+┣ .vscode
+┣ assets
+┃ ┣ css
+┃ ┃ ┣ base
+┃ ┃ ┣ components
+┃ ┃ ┗ pages
+┃ ┣ images
+┃ ┗ js
+┃   ┣ api
+┃   ┣ components
+┃   ┣ pages
+┃   ┗ utils
+┗ html
+  ┣ 404
+  ┣ cart
+  ┣ login
+  ┣ products
+  ┗ signup
 ```
 
+
+
+| Depth 1 | Depth 2 | Depth 3 | Files (Depth 4) | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **.github/** | `ISSUE_TEMPLATE/` | - | `feature_request.md` | 이슈 보고 및 기능 제안 템플릿 |
+| **.vscode/** | - | - | `settings.json` | 프로젝트별 VS Code 에디터 설정 |
+| **assets/** | **css/** | `base/` | `components.css`, `layout.css`, `reset.css`, `variables.css` | 초기화, 레이아웃, 공통 변수 및 베이스 스타일 |
+| | | `components/` | `footer.css`, `gnb.css`, `modal.css` | 공통 UI 컴포넌트(헤더, 푸터, 모달) 스타일 |
+| | | `pages/` | `404.css`, `detail.css`, `login.css`, `main.css`, `signup.css` | 각 페이지별 개별 스타일 시트 |
+| | **images/** | - | `banner01.png` ~ `banner05.png` | 메인 배너 이미지 리소스 |
+| | | - | `icon-*.svg` (search, cart, user, arrow, check 등) | 서비스 전체에 사용되는 SVG 아이콘 모음 |
+| | | - | `Logo-hodu.svg`, `favicon.ico` | 브랜드 로고 및 파비콘 |
+| | | - | `product-img_placeholder.png` | 상품 이미지 미등록 시 사용되는 대체 이미지 |
+| | **js/** | `api/` | `auth.js`, `client.js`, `product.js` | API 통신 설정 및 도메인별 Fetch 로직 |
+| | | `components/` | `dropdown.js`, `footer.js`, `gnb.js`, `modal.js` | 공통 컴포넌트 단위 자바스크립트 동작 구현 |
+| | | `pages/` | `404.js`, `detail.js`, `login.js`, `main.js`, `signup.js` | 각 페이지별 비즈니스 로직 및 이벤트 바인딩 |
+| | | `utils/` | `path.js`, `storage.js` | 경로 관리 및 로컬 스토리지 제어 유틸리티 |
+| **html/** | `404/` | - | `index.html` | 404 에러 안내 페이지 |
+| | `cart/` | - | (Empty) | 장바구니 페이지 (작업 예정) |
+| | `login/` | - | `index.html` | 로그인 페이지 |
+| | `products/` | - | `detail.html` | 상품 상세 정보 페이지 |
+| | `signup/` | - | `index.html` | 회원가입 페이지 |
+| **Root** | - | - | `.gitignore` | Git 추적 제외 설정 파일 |
+| | - | - | `index.html` | 프로젝트 메인 진입점 (Main Page) |
+| | - | - | `README.md` | 프로젝트 문서화 파일 |
 ---
 
 ## 6. 협업 중심 트러블슈팅
