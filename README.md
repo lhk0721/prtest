@@ -196,39 +196,158 @@ flowchart TD
 
 ---
 
-이 방식을 사용하는 이유
+제시해주신 핵심적인 내용들을 바탕으로, **README.md**에 바로 복사해서 사용하실 수 있도록 깔끔하게 정리해 드립니다.
 
-* **단일 진실 원본(SSOT) 유지**: 팀 공용 브랜치인 `develop`을 기준으로만 작업하여 작업 기준의 불일치를 방지합니다.
-* **원본 레포지토리 보호**: 개인 fork를 거쳐 PR을 진행함으로써 원본 레포지토리의 안정성과 무결성을 보호합니다.
-* **변경 이력 추적 및 코드 리뷰**: 모든 변경 사항을 PR 단위로 관리하여 코드 리뷰를 활성화하고 책임 범위를 명확히 합니다.
-* **깨끗한 커밋 히스토리**: 최신 `develop`을 기준으로 `rebase` 후 병합하여 불필요한 병합 커밋을 줄이고 충돌 가능성을 최소화합니다.
+각 항목의 상세 내용은 `<details>`와 `<summary>` 태그를 활용해 토글로 구성했습니다.
 
 ---
 
-Git 커맨드 예시
+ 왜 Fork 기반 워크플로우를 사용하나요?
+
+Fork는 단순한 복제가 아닙니다. **"실수를 방지하는 안전장치"**이자 **"고품질의 협업을 기술적으로 강제하는 구조"**입니다. 우리가 이 방식을 채택한 핵심 이유는 다음과 같습니다.
+
+<details>
+<summary>1. 실수 방지 (1차 방어선)</summary>
+
+* **원본 레포(Upstream) 보호:** 원본에 직접적인 push 권한을 제한하여, 실수로 `main`이나 `develop` 브랜치에 코드를 올리는 것을 방지합니다.
+* **히스토리 오염 차단:** 한 번 잘못 push된 코드는 히스토리 오염과 큰 롤백 비용을 초래합니다.
+* **자유로운 실험:** "실수할 자유는 개인 공간(Origin)에서만 허용"됩니다. 개인 포크 레포에서는 마음껏 실험하고 검토된 코드만 원본에 반영합니다.
+
+</details>
+
+<details>
+<summary>2. PR(Pull Request) 프로세스 강제</summary>
+
+* **구조적 강제:** Fork 구조에서는 원본 레포로 직접 push가 불가능하므로, PR이 유일한 반영 경로가 됩니다.
+* **품질 보장:** 이를 통해 코드 리뷰, 변경 이력 확인, 승인 절차 등 협업에 필요한 규칙을 기술적으로 강제하여 프로젝트의 전체적인 품질을 유지합니다.
+
+</details>
+
+<details>
+<summary>3. 책임 범위의 명확한 분리</summary>
+
+* **자동 기록:** PR 기반의 협업은 "누가, 어느 브랜치에서, 어떤 변경을, 어떤 기준으로" 요청했는지 자동으로 기록합니다.
+* **추적 가능성:** 원본 레포에 직접 push할 때 발생할 수 있는 '검토 없는 변경'을 방지하고, 모든 코드의 변경 맥락을 추적 가능하게 만듭니다.
+
+</details>
+
+<details>
+<summary>4. 브랜치 히스토리 품질 유지</summary>
+
+* **맥락 중심의 관리:** feature 브랜치의 난립이나 무의미한 merge commit, 실험용 커밋들이 원본 히스토리에 섞이는 것을 방지합니다.
+* **선형 히스토리:** PR 단위로 맥락이 정리되며, 필요 시 rebase를 통해 깔끔하고 가독성 좋은 커밋 히스토리를 유지할 수 있습니다.
+
+</details>
+
+<details>
+<summary>5. 개발자의 심리적 안정감</summary>
+
+* **심리적 효과:** "원본에 바로 반영된다"는 부담감은 줄이고, "내 공간에서 충분히 실험한다"는 자유를 제공합니다.
+* **결과:** 이 안정감은 개발 과정에서의 과감한 실험과, 원본 반영 시의 신중함이라는 긍정적인 결과로 이어집니다.
+
+</details>
+
+---
+
+> Git 명령어 사용 예시 (Workflow Reference)
+
+<details>
+<summary><b>1. 초기 설정 (최초 1회)</b></summary>
+
+내 계정으로 포크(Fork)한 저장소를 로컬에 복제하고, 원본 저장소(`upstream`)를 연결합니다.
 
 ```bash
-# 1. upstream 최신 상태 반영
-git checkout develop
-git pull upstream develop
+# 1. 개인 fork 레포 clone
+git clone https://github.com/내계정/open-market-project.git
+cd open-market-project
 
-# 2. 새로운 작업 브랜치 생성
-git checkout -b feature/issue-1
+# 2. upstream(오가니제이션 원본) 연결
+git remote add upstream https://github.com/open-market-project/open-market-project.git
 
-# 3. 작업 후 커밋 및 Push
-git add .
-git commit -m "feat: 구현 기능 요약"
-git push origin feature/issue-1
-
-# 이후 GitHub에서 Pull Request 생성 (target: upstream/develop)
+# 3. 연결 확인
+git remote -v
 
 ```
 
----
+</details>
 
-**팁:** README에 넣으실 때 팀원들이 헷갈리지 않도록 `upstream`과 `origin` 설정법을 상단에 함께 적어주면 더 좋습니다. 이 내용 그대로 사용하시거나, 프로젝트 상황에 맞춰 문구만 조금씩 수정해 보세요!
+<details>
+<summary><b>2. 기능 개발 시작 (이슈 브랜치 생성)</b></summary>
 
-혹시 추가로 **브랜치 명명 규칙(Naming Convention)**이나 **커밋 메시지 규칙**도 함께 정리해 드릴까요?
+원본 저장소의 최신 상태를 가져온 뒤, 작업할 이슈 브랜치를 생성합니다.
+
+```bash
+# 1. upstream 최신 상태 동기화
+git fetch upstream
+
+# 2. 이슈 브랜치 생성 및 체크아웃
+# upstream의 특정 이슈 브랜치를 추적하며 로컬에 생성합니다.
+git checkout -b feature/issue-1 upstream/feature/issue-1
+
+```
+
+</details>
+
+<details>
+<summary><b>3. 작업 및 커밋</b></summary>
+
+로컬에서 코드를 수정하고 커밋을 기록합니다.
+
+```bash
+# 작업 수행 후...
+git add .
+
+# 팀 컨벤션에 맞춘 커밋 메시지 작성
+git commit -m "feat: 상품 상세 페이지 API 연동 작업"
+
+```
+
+</details>
+
+<details>
+<summary><b>4. PR 전 최신화 (Rebase)</b></summary>
+
+내 작업 내역을 최신 `upstream/develop` 지점 위로 재배치하여 충돌을 방지합니다.
+
+```bash
+# 1. 최신 변경사항 가져오기
+git fetch upstream
+
+# 2. upstream/develop 기준으로 내 브랜치 재배치
+git rebase upstream/develop
+
+```
+
+> **참고:** 충돌 발생 시 코드 수정 후 `git add .` -> `git rebase --continue`를 진행합니다.
+
+</details>
+
+<details>
+<summary><b>5. Push 및 PR 생성</b></summary>
+
+정리된 코드를 내 원격 저장소(`origin`)에 올리고 PR을 생성합니다.
+
+```bash
+# 개인 fork(origin)로 푸시
+git push origin feature/issue-1
+
+```
+
+**GitHub PR 설정:**
+
+* **Source:** `내계정/feature/issue-1`
+* **Target:** `upstream/develop`
+
+</details>
+
+<details>
+<summary><b> 절대 주의사항 (Don'ts)</b></summary>
+
+* **로컬 `main`에서 `merge` 금지:** `main`은 기준점일 뿐이며 직접 병합하지 않습니다.
+* **`origin/main`으로 `push` 금지:** 개인 포크의 `main`을 오염시키지 말고 `feature` 브랜치를 사용합니다.
+* **PR 없이 직접 반영 시도 금지:** 모든 코드는 리뷰를 거쳐 PR로 병합되어야 합니다.
+
+</details>
 
 ---
 
@@ -259,7 +378,7 @@ git push origin feature/issue-1
 모든 협업은 해당 규칙을 전제로 진행한다.
 
 
-### 1.2 커밋 컨벤션 (Commit Convention)
+### 2.2 커밋 컨벤션 (Commit Convention)
 
 팀 공통 커밋 규칙을 엄격히 적용함.
 
