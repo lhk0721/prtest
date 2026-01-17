@@ -22,7 +22,7 @@
 
 ## 1. 협업 프로세스  (Collaboration Process)
 
-> 프로젝트 목표와 협업 시스템 설계 배경
+> 협업 시스템 설계 배경
 
 <!-- wiki_home 캡쳐 사진 추가 -->
 
@@ -104,14 +104,7 @@
 
 ---
 
-### 2.1. 브랜치 전략 (Git-flow 기반)
-
-> 본 프로젝트는 중·대규모 협업에 적합한 Git-flow 전략을 기반으로 브랜치 구조를 운영한다.
-기능 개발, 통합, 배포, 긴급 수정의 역할을 명확히 분리해 안정성과 협업 효율을 확보하는 것을 목표로 한다.
-
----
-
-### 2.1.1 Branch Workflow
+### 2.1. Repository Architecture
 
 ```mermaid
 flowchart TD
@@ -168,24 +161,43 @@ flowchart TD
     style Origin fill:#1e1e1e,stroke:#ecf0f1,color:#fff
     style Local fill:#1e1e1e,stroke:#ecf0f1,color:#fff
 ```
+
+> 이 Repository Architecture는 원본 레포지토리의 안정성을 최우선으로 유지하면서, 개인 단위의 자유로운 개발과 팀 단위의 통제된 통합을 동시에 달성하기 위한 협업 구조를 전제로 설계되었다.
+
+<details> <summary><b> Upstream (Organization Remote)</b></summary> <div markdown="1">
+
+- 팀의 단일 기준 저장소 (Single Source of Truth).
+
+- 실제 서비스 운영(main)과 개발 통합(develop)이 이루어지는 공간이다.
+
+</div> </details>
+
+<details> <summary><b> Local Workstation</b></summary> <div markdown="1">
+
+- 유일한 실제 작업 공간이다.
+
+- 코드 수정, 커밋, 실험은 모두 로컬의 이슈 브랜치에서 수행되며, 이 과정에서 원본 레포지토리는 직접 변경되지 않는다.
+
+</div> </details>
+
+<details> <summary><b> Origin (Personal Fork Remote)</b></summary> <div markdown="1">
+
+- 개인 작업 결과의 중간 저장소이자 Pull Request의 출발점이다.
+
+- 로컬에서 완료된 작업 브랜치는 개인 Fork에만 push되며, 원본 레포지토리로의 반영은 반드시 Pull Request를 통해서만 이루어진다.
+
+</div> </details>
+
+---
+
+### 2.1.1 Branch Workflow
+
+> 본 프로젝트는 코드의 안정성과 협업 효율을 위해 아래의 브랜치 워크플로우를 따릅니다. 모든 작업은 **원본 레포지토리의 `develop` 브랜치**를 기준으로 진행됩니다.
+
 <figure>
   <img src="https://github.com/user-attachments/assets/92fc2391-9810-4795-bed4-158a94609065" alt="프로젝트 실행 화면 데모" width="100%">
   <figcaption align="center"><b>Fork 레포 전략을 적용한 Git 작업 흐름</b></figcaption>
 </figure>
-
-> 본 프로젝트는 코드의 안정성과 협업 효율을 위해 아래의 브랜치 워크플로우를 따릅니다. 모든 작업은 **원본 레포지토리의 `develop` 브랜치**를 기준으로 진행됩니다.
-
-작업 순서 (Workflow Steps)
-
-1. **기준 브랜치 최신화**: 로컬의 `develop` 브랜치를 원본 레포(`upstream`)의 최신 상태로 업데이트합니다.
-2. **이슈 브랜치 생성**: 최신 `develop` 브랜치에서 분기하여 로컬 환경에 작업용 이슈 브랜치를 생성합니다.
-3. **작업 및 커밋**: 로컬 이슈 브랜치에서 기능을 구현하고 커밋을 진행합니다.
-4. **개인 레포 Push**: 작업 완료 후, 본인의 개인 fork 레포지토리(`origin`)로 해당 브랜치를 `push`합니다.
-5. **Pull Request 생성**: 개인 fork 레포의 작업 브랜치에서 **원본 레포의 `develop` 브랜치**를 대상으로 PR을 생성합니다.
-
----
-
-브랜치 운용 규칙
 
 | 구분 | 내용 |
 | --- | --- |
@@ -194,15 +206,42 @@ flowchart TD
 | **Push 대상** | `origin` (개인 Fork 레포지토리) |
 | **PR 대상** | `origin/작업-브랜치` → `upstream/develop` |
 
+작업 순서 (Workflow Steps)
+
+```mermaid
+graph LR
+    subgraph Upstream [Central Repository - upstream]
+        U_Dev[develop branch]
+    end
+
+    subgraph Origin [Personal Fork - origin]
+        O_Dev[develop branch]
+        O_Feat[feature/issue-1 branch]
+    end
+
+    subgraph Local [Developer Machine]
+        L_Dev[develop branch]
+        L_Feat[feature/issue-1 branch]
+    end
+
+    %% Workflow Connections
+    U_Dev -- "1. Fork" --> O_Dev
+    O_Dev -- "2. Clone" --> L_Dev
+    L_Dev -- "3. Checkout" --> L_Feat
+    L_Feat -- "4. Push" --> O_Feat
+    O_Feat -- "5. Pull Request" --> U_Dev
+    U_Dev -- "6. Sync (Fetch/Rebase)" --> L_Dev
+```
+
+1. **이슈 브랜치 생성**: 최신 `develop` 브랜치에서 분기하여 로컬 환경에 작업용 이슈 브랜치를 생성합니다.
+2. **기준 브랜치 최신화**: 로컬 작업 디렉토리를 원본 레포(`upstream`)의 develop 기준 최신 상태로 업데이트합니다.
+3. **작업 및 커밋**: 로컬 이슈 브랜치에서 기능을 구현하고 커밋을 진행합니다.
+4. **개인 레포 Push**: 작업 완료 후, 본인의 개인 fork 레포지토리(`origin`)로 해당 브랜치를 `push`합니다.
+5. **Pull Request 생성**: 개인 fork 레포의 작업 브랜치에서 **원본 레포의 `develop` 브랜치**를 대상으로 PR을 생성합니다.
+
 ---
 
-제시해주신 핵심적인 내용들을 바탕으로, **README.md**에 바로 복사해서 사용하실 수 있도록 깔끔하게 정리해 드립니다.
-
-각 항목의 상세 내용은 `<details>`와 `<summary>` 태그를 활용해 토글로 구성했습니다.
-
----
-
- 왜 Fork 기반 워크플로우를 사용하나요?
+ > 왜 Fork 기반 워크플로우를 사용하나요?
 
 Fork는 단순한 복제가 아닙니다. **"실수를 방지하는 안전장치"**이자 **"고품질의 협업을 기술적으로 강제하는 구조"**입니다. 우리가 이 방식을 채택한 핵심 이유는 다음과 같습니다.
 
@@ -353,13 +392,15 @@ git push origin feature/issue-1
 
 ### 2.1.2 Branch Naming Convention
 
-브랜치 이름은 프로젝트의 일관성을 위해 아래의 형식을 따르며, 모든 변경 사항은 **Pull Request**를 통해 병합하는 것을 원칙으로 합니다.
+<!--실제 브랜치 목록 캡쳐 사진-->
+
+브랜치 이름은 프로젝트의 일관성을 위해 아래의 형식을 따릅니다.
 
 `<Type>/<Issue Number 또는 작업 내용>`
 
 > **Note:** 각 브랜치는 반드시 명확한 **Parent 브랜치**에서 생성해야 하며, 작업 완료 후 해당 Parent 브랜치로 PR을 보냅니다.
 
-### 2. 브랜치 타입 정의
+### 2.1.3 브랜치 타입 정의
 
 | 타입 (Type) | 설명 | 예시 |
 | --- | --- | --- |
@@ -374,11 +415,9 @@ git push origin feature/issue-1
 
 ---
 
-본 브랜치 전략은 실제 프로젝트 운영 과정에서 적용·검증된 구조를 기준으로 하며,
-모든 협업은 해당 규칙을 전제로 진행한다.
-
-
 ### 2.2 커밋 컨벤션 (Commit Convention)
+
+<!--커밋 목록 사진-->
 
 팀 공통 커밋 규칙을 엄격히 적용함.
 
@@ -392,15 +431,17 @@ git push origin feature/issue-1
 형식
 
 ```
-type: 요약 내용 (#이슈번호)
+Type: 요약 내용 (#이슈번호)
 
-- 변경 사항 1
-- 변경 사항 2
+- 상세 내용 1
+- 상세 내용 2
 ```
 
 ---
 
 ### 1.3 이슈 기반 작업 관리
+
+<!--이슈 목록 사진 추가-->
 
 * 모든 작업은 GitHub Issue 생성 후 진행
 * Issue 단위로 feature 브랜치 생성
@@ -411,9 +452,13 @@ type: 요약 내용 (#이슈번호)
 
 ### 1.4 코드 리뷰 프로세스
 
+<!--PR 사진 -->
+
 * PR 생성 시 Reviewer 지정 필수
-* 최소 1인 이상 승인 후 병합
+* 병합을 위해서는 모든 Reviewer 리뷰 및 승인 필요
 * 리뷰 기준
+
+  <!--수정사항 전달 사진-->
 
   * 코드 가독성 및 컨벤션 준수 여부
   * 공통 컴포넌트 영향도
@@ -422,34 +467,92 @@ type: 요약 내용 (#이슈번호)
 
 ---
 
-### 1.5 협업 도구 활용
-
-* GitHub Issues: 작업 단위 관리
-* GitHub Projects: 진행 상태 시각화
-* GitHub Wiki: 회의록, 규칙, 참고 문서 정리
-* 정기 미팅 기록: Wiki 또는 Issue로 관리
-
----
-
 ## 2. 프로젝트 개요
 
-### 2.1 프로젝트 목표
+### 2.1 프로젝트 목표와 범
 
-* GitHub 기반 협업 프로세스 실습
-* 커밋 컨벤션과 PR 중심 개발 문화 정착
-* 역할 분담 기반 프론트엔드 협업 경험 축적
+<!-- 세개의 병렬 이미지로 넣기  figure/figurecaption-->
+
+* GitHub 기반 협업 프로세스 실습 <!--github 이미지-->
+* 커밋 컨벤션과 PR 중심 개발 문화 정착 <!---->
+* 역할 분담 기반 프론트엔드 협업 경험 축적 <!--assembly line-->
+  
 
 ---
 
 ### 2.2 핵심 기능
 
-* 상품 목록 및 상세 페이지
-* 장바구니 및 수량·가격 계산
-* UI 컴포넌트 분리 및 재사용 구조
-* 상태 기반 인터랙션 처리
+<!--각 실제 페이지 캡쳐 / gif로 만들기-->
 
----
+프로젝트 범위 (Project Scope) - 구매자용 서비스
 
+> 본 프로젝트는 구매자 중심의 이력관리 및 쇼핑 경험을 제공하는 이커머스 플랫폼의 프론트엔드 구현을 목표로 합니다. 사용자 경험(UX)을 고려한 유효성 검사와 상태 관리에 중점을 두었습니다. UI는 PC(Desktop) 환경을 기준으로 설계·구현되었으며, 모바일 및 태블릿 환경은 고려 대상에 포함하지 않습니다.
+
+1. 회원 인증 및 관리 (Auth)
+
+> 사용자 식별과 권한 관리를 위한 핵심 기능을 포함합니다.
+
+* **로그인 페이지**
+<!--figcaption -->
+* 아이디/비밀번호 미입력 및 불일치 시 실시간 **경고 문구(Validation)** 노출.
+* 로그인 실패 시 해당 입력창 자동 **Focus 이벤트** 및 입력값 초기화 처리.
+* 로그인 성공 시 이전 페이지(Redirect)로 자동 이동.
+* 구매자/판매자 탭 분리를 통한 맞춤형 로그인 인터페이스 제공.
+
+<!--figcaption -->
+* **회원가입 페이지**
+* 아이디 중복 확인 기능 및 실시간 유효성 메시지 구현.
+* 이용약관 동의 체크 및 필수 입력값 검증 후 가입 활성화.
+* 가입 완료 후 로그인 페이지로 자동 이동.
+
+
+
+## 2. 상품 브라우징 (Product)
+
+상품 정보를 탐색하고 상세 내용을 확인하는 영역입니다.
+
+* **상품 목록 페이지**
+ <!--figcaption -->
+* 카드 타입 UI를 통해 상품 판매자, 상품명, 가격 정보 노출.
+* 상품 클릭 시 해당 상품의 상세 페이지로 라우팅.
+
+
+* **상품 상세 페이지**
+<!--figcaption -->
+* `productId` 파라미터를 기반으로 한 동적 상품 데이터 로딩.
+* **수량 조절 시스템**: `+`, `-` 버튼을 통한 수량 변경 및 재고 수량 초과 시 `+` 버튼 비활성화.
+* **실시간 가격 계산**: 선택한 수량 및 옵션에 따른 총 결제 금액 실시간 반영.
+* 장바구니 중복 추가 방지 로직 적용.
+
+
+
+## 3. 공통 컴포넌트 (Common)
+
+전체 페이지에서 일관된 UX를 제공하기 위한 공통 요소입니다.
+<!--figcaption -->
+* **GNB (Global Navigation Bar)**
+* **검색 바**: 검색 UI 구현 (기능은 추후 확장 예정).
+* **로그인 상태별 분기**:
+* 비로그인/구매 회원: 검색창, 장바구니 버튼 노출.
+* 판매 회원: 마이페이지, 판매자 센터 버튼 노출.
+
+
+
+
+* **권한 제어 모달 (Modal)**
+* <!--figcaption -->
+* 비로그인 사용자가 장바구니 담기, 바로 구매 시도 시 로그인 유도 모달 노출.
+
+
+* **마이페이지 드롭다운**
+* <!--figcaption -->
+* 아이콘 클릭 시 메인 컬러 변경 및 드롭다운 메뉴(마이페이지, 로그아웃) 노출.
+* 드롭다운 외 영역 클릭 시 닫기(Outside Click) 기능 구현.
+
+
+* **푸터 (Footer)**
+* <!--figcaption -->
+* 디자인 가이드를 준수한 반응형 푸터 구현.
 
 ---
 
@@ -457,6 +560,7 @@ type: 요약 내용 (#이슈번호)
 
 ### 4.1 개발 환경
 
+<!--figcaption -->
 * Language: HTML, CSS, Vanilla JavaScript
 * Version Control: Git, GitHub
 * 협업 도구: GitHub Issues, Projects, Wiki
@@ -465,8 +569,14 @@ type: 요약 내용 (#이슈번호)
 
 ### 4.2 배포 정보
 
-* 배포 URL:
-* 테스트 계정:
+* **배포 URL:** [https://open-market-project.github.io/open-market-project/](https://open-market-project.github.io/open-market-project/)
+
+* **테스트 계정**
+프로젝트의 모든 기능을 즉시 확인해 보실 수 있도록 구매자 테스트 계정을 제공합니다.
+
+| 구분 | 아이디 (ID) | 비밀번호 (PW) |
+| :-- | :-- | :-- |
+| **구매자 (Buyer)** | `buyer1` | `weniv1234` |
 
 ---
 
