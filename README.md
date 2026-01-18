@@ -7,7 +7,7 @@
 
 ## 0. 팀 구성 및 역할 분담
 
-## 👥 팀원 소개 및 역할
+##  팀원 소개 및 역할
 
 | 프로필 | 이름  | 담당 영역 | 핵심 책임 | 주요 개발 산출물 |
 | :---: | :--- | :--- | :--- | :--- |
@@ -58,29 +58,59 @@ graph TD
 ```
 > 본 프로젝트는 단순한 기능 구현을 넘어, 팀의 협업 시스템을 단계적으로 설계하고 검증하는 과정에 중점을 두었습니다. 프로세스 고도화를 통해 효율적인 개발 환경을 구축했습니다.
 
-1. 사전 기획 및 요구사항 분해
-목적: 기술 구현 전, 프로젝트 명세서를 기반으로 요구사항을 작업 단위(Task)로 분해하고 팀 공통의 개발 범위를 정렬
+# Collaborative Development Process
 
-핵심: 단순 논의에 그치지 않고 전체 개발 범위를 팀의 공통 언어로 정의하여 작업의 모호성 제거
+---
 
-2. Sprint Board를 통한 구조적 설계
-설계 문서화: 초기 Sprint Board를 단순 일정 관리 도구가 아닌, 프로젝트 전반의 구조를 공유하기 위한 설계 문서로 활용
+## 1. 사전 기획 및 요구사항 분해
+> **"단순 논의를 넘어 팀의 공통 언어로 정의합니다."**
 
-다차원적 정의: 각 작업 단위별로 담당자, 선행 작업, 우선순위, 진행 상태를 정의하여 "무엇을, 언제까지, 누가, 왜 해야 하는가"에 대한 명확한 기준 수립
+기술 구현에 앞서 프로젝트 명세서를 기반으로 요구사항을 세부 작업 단위(**Task**)로 분해합니다. 이 과정에서 전체 개발 범위를 정렬하여 작업의 모호성을 제거합니다.
 
-3. GitHub 협업 프로세스로의 점진적 계승
-GitHub 기반의 협업 도구(Issue, Branch Strategy, PR)를 도입하며 기존에 합의된 작업 구조를 유기적으로 연결했습니다.
+* **목적:** 기술 구현 전 개발 범위 동기화
+* **핵심:** 작업 단위(Task) 분해를 통한 리스크 최소화 및 공통 언어 수립
 
-Task → Issue 전환: Sprint Board에서 정의된 작업 단위를 GitHub Issue로 생성하여 추적성 강화
+---
 
-상태 매핑: 기존 진행 상태를 Kanban Board의 컬럼(To Do / In Progress / Review / Done)으로 자연스럽게 매핑
+## 2. Sprint Board를 통한 구조적 설계
+단순한 일정 관리를 넘어, 프로젝트 전반의 구조를 공유하기 위한 **설계 문서**로 활용합니다. 각 작업 단위별로 아래 항목을 정의하여 명확한 기준을 수립합니다.
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/f00b63c4-d828-43b9-a747-58c4c496e910" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        Notion으로 작성된 Sprint Board
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
-연속성 유지: 새로운 도구 도입 시 계획을 재수립하는 대신, 기존의 작업 분해 방식과 책임 범위를 그대로 계승하여 도구 변경에 따른 혼선 방지 및 협업 방식의 고도화 실현
+| 항목 | 설명 |
+| :--- | :--- |
+| **담당자** | 각 작업 단위별 책임 소재 명확화 |
+| **선행 작업** | 작업 간 의존성 파악 및 병목 구간 예측 |
+| **우선순위** | 핵심 기능 위주의 단계적 개발 순서 결정 |
+| **진행 상태** | "무엇을, 언제까지, 왜"에 대한 실시간 가시성 확보 |
 
-4. 프로세스의 의의
-도구의 기능에 의존하기보다 팀의 합의된 워크플로우를 먼저 설계하고, 이를 도구에 맞게 발전시켜 나가는 과정을 통해 협업의 효율성을 극대화했습니다. 이는 프로젝트 관리 역량을 단계적으로 검증하고 팀워크를 견고히 하는 기반이 되었습니다.
+---
 
+## 3. GitHub 협업 프로세스로의 고도화
+Sprint Board에서 정의된 구조를 GitHub의 생태계(Issue, PR, Branch Strategy)로 유기적으로 연결하여 연속성을 유지합니다.
 
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/22fe4ece-609d-4dcb-9b0a-e7f24106cc54" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        Kanban board(프로젝트 완료 시점)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
 ## 1. 협업 프로세스  (Collaboration Process)
 
@@ -92,13 +122,33 @@ Task → Issue 전환: Sprint Board에서 정의된 작업 단위를 GitHub Issu
   <em><b> 협업 시스템 설계 및 커뮤니티 가이드라인 구조 </b></em>
 </p>
 
-오픈마켓 구현은 결과물이 아니라 학습을 위한 매개체라는 점에 팀 전원이 사전에 합의했다. 이 프로젝트의 최우선 목표는 기능 완성이 아니라 GitHub 기반 협업 시스템을 실제로 설계·운영·검증하는 경험을 축적하는 것이었다.
+## Collaboration Strategy & Philosophy
 
-이를 위해 개발 착수 전에 GitHub Insights와 Notebook LM을 활용해 협업 실패·성공 사례와 권장 가이드라인을 수집·분석했고, 해당 자료를 바탕으로 협업에서 반드시 지켜야 할 기준과 우선순위를 정리했다. 이후 GitHub Organization과 저장소를 생성한 직후, 기능 개발을 전면 연기한 상태에서 브랜치 전략과 커밋 컨벤션을 먼저 합의·확정하는 절차를 거쳤다.
+### 기능 완성을 이전에 '협업 시스템' 구축을 목표로
+본 프로젝트에서 오픈마켓 구현은 결과물 그 자체가 아닌, **학습과 성장을 위한 매개체**입니다. 팀 전원은 개발 착수 전, "기능 완성보다 **GitHub 기반의 협업 시스템을 설계·운영·검증하는 경험**을 최우선 가치로 둔다"는 원칙에 합의했습니다.
 
-특히 협업 경험이 풍부한 강수민 팀원이 주도하여 Git Flow 구조, 브랜치 역할, 병합 규칙을 명확히 정의했고, 컨벤션뿐 아니라 GitHub 사용 가이드와 주요 명령어까지 포함한 협업 문서를 Wiki에 정리했다. 모든 규칙은 실제 사용을 전제로 작성되었으며, 캡처 이미지와 주석을 통해 팀원 간 이해 편차를 최소화하는 데 집중했다.
+---
 
-이러한 사전 합의와 문서화 과정을 통해, 브랜치 전략은 단순한 작업 분기 수단이 아니라 팀 전체의 개발 흐름과 책임 범위를 명확히 하는 핵심 협업 장치로 기능하도록 설계되었다.
+### 데이터 기반의 협업 설계
+막연한 도입이 아닌, 객관적인 근거와 사례 분석을 통해 팀에 최적화된 가이드라인을 수립했습니다.
+* **사례 분석:** `GitHub Insights` 및 `Notebook LM`을 활용하여 협업의 성공/실패 사례와 베스트 프랙티스 분석
+* **우선순위 수립:** 수집된 자료를 바탕으로 우리 팀이 반드시 지켜야 할 협업 기준과 우선순위 정의
+
+---
+
+### "Convention First, Code Later"
+기능 개발에 앞서 협업의 토대를 먼저 견고히 했습니다. 저장소 생성 직후, 기능 개발을 전면 연기하고 **브랜치 전략과 커밋 컨벤션을 확정**하는 절차를 거쳤습니다.
+
+#### 체계적인 프로세스 정립 (Wiki Documentation)
+팀원 강수민 님의 주도하에 실질적으로 작동하는 협업 문서를 구축했습니다.
+* **Git Flow 구조화:** 브랜치별 역할(main, develop, feature 등)과 병합(Merge) 규칙 명확화
+* **지식의 상향 평준화:** GitHub 사용 가이드 및 주요 명령어, 캡처 이미지와 주석을 포함한 가이드를 Wiki에 정리하여 팀원 간 이해 편차 최소화
+* **실천적 규칙:** 모든 컨벤션은 이론에 그치지 않고 실제 워크플로우에 즉시 적용 가능한 수준으로 구체화
+
+---
+
+### 기대 효과
+이러한 사전 합의와 문서화 과정을 통해, 우리의 **브랜치 전략**은 단순한 코드 분기 수단을 넘어 **팀 전체의 개발 흐름과 책임 범위를 명확히 하는 핵심 협업 장치**로 기능합니다.
 
 ---
 
@@ -556,6 +606,37 @@ Type: 요약 내용 (#이슈번호)
 
 ### 1.4 코드 리뷰 프로세스
 
+```mermaid
+graph TD
+    %% 1-2단계: 시작 및 PR 생성
+    Start([1. 기능 개발 완료]) --> PR[2. Pull Request 생성<br/>feature → develop]
+    PR --> Verify[3. PR 히스토리 및 브랜치 구조 검증]
+
+    %% 3-4단계: 리뷰 시작
+    Verify --> Review[4. 코드 리뷰 진행<br/>가독성/컨벤션/사이드이펙트 검토]
+
+    %% 5-8단계: 피드백 루프 (반복 구간)
+    Review --> Decision{5, 8. 모든 리뷰어<br/>승인 완료?}
+    
+    %% 수정 요청 경로
+    Decision -- "NO (수정 필요)" --> Feedback[5. 리뷰 코멘트 및 수정 요청]
+    Feedback --> Fix[6. 수정 사항 반영 및 추가 커밋 push]
+    Fix --> Review
+
+    %% 승인 및 병합 경로
+    Decision -- "YES (Approve)" --> Approve[7. Review Approve 처리]
+    Approve --> Merge[9. Merge 수행<br/>feature → develop 병합 및 브랜치 삭제]
+
+    %% 10단계: 종료
+    Merge --> End([10. 프로세스 종료 및 히스토리 관리])
+
+    %% 스타일링
+    style Decision fill:#fff9c4,stroke:#fbc02d
+    style Feedback fill:#ffebee,stroke:#b71c1c
+    style Approve fill:#e8f5e9,stroke:#2e7d32
+    style Merge fill:#e1f5fe,stroke:#0288d1
+```
+
 <div align="center" style="margin: 30px 0;">
   <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <img src="https://github.com/user-attachments/assets/eb1651af-0b3d-4f05-86c4-8ccbdfd2eea3" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
@@ -625,7 +706,7 @@ Type: 요약 내용 (#이슈번호)
   </div>
 </div>
 
-> 코드 라뷰 사앤 더움 서헝둘울 즁점적으로 검토하였습니다.
+> 코드 리뷰 시엔 다음 사항들을 중점적으로 검토하였습니다.
 
   * 코드 가독성 및 컨벤션 준수 여부
   * 공통 컴포넌트 영향도
@@ -695,16 +776,32 @@ graph TD
 
 1. 회원 인증 및 관리 (Auth)
 
-> 사용자 식별과 권한 관리를 위한 핵심 기능을 포함합니다.
+> auth.js는 UI로부터 인증·회원 관련 요청을 받아 서버와 통신하고, 응답을 성공 데이터 또는 표준화된 에러로 반환하는 좌→우 단방향 API 게이트웨이 흐름을 가진다.
 
 ```mermaid
-flowchart TD
-    Login[로그인 성공] --> Set["storage: 토큰 저장"]
-    Set --> Path["path: 루트 경로 계산"]
-    Path --> Redirect["메인으로 이동"]
+graph LR
+    %% 1~2단계: 요청 준비
+    S([UI 호출]) --> Trigger[API 함수 호출: login/signup 등]
+    Trigger --> Build[Request 구성: URL/Header/Body 설정]
+
+    %% 3~4단계: 네트워크 통신
+    Build --> Fetch[fetch 실행: 서버 요청 전송]
+    Fetch --> Receive[서버 응답 수신 & JSON 파싱]
+
+    %% 5단계: 응답 상태 판별 및 정규화
+    Receive --> Cond{response.ok?}
     
-    Auth{인증 확인?} -- "Yes" --> Service[서비스 이용]
-    Auth -- "No" --> Logout["storage: 토큰 삭제"]
+    %% 성공 경로
+    Cond -- "Yes (성공)" --> Success[Data 반환]
+    Success --> Resolve([Promise Resolve: UI로 데이터 전달])
+
+    %% 실패 경로
+    Cond -- "No (실패)" --> Flatten[에러 메시지 평탄화 및 Error 객체 생성]
+    Flatten --> Reject([Throw Error: UI catch 블록으로 전달])
+
+    %% 역할 강조
+    style Success fill:#e1f5fe,stroke:#01579b
+    style Flatten fill:#ffebee,stroke:#b71c1c
 ```
 
 * **로그인 페이지**
@@ -902,14 +999,68 @@ graph LR
 
 
 **마이페이지 드롭다운**
-* <!--figcaption -->
+> 전역 모달은 외부 트리거에 의해 메시지와 콜백을 주입받아 표시되며, 사용자 선택에 따라 단순 종료 또는 지정된 후속 동작을 실행하는 좌→우 범용 확인 흐름 구조를 가진다.
+
+```mermaid
+graph LR
+    %% 1-2단계: 초기화 및 전역 등록
+    S([시작]) --> Load[DOM 로드 시 모달 HTML 주입]
+    Load --> Global[NOT_IMPLEMENTED_MSG & 함수 전역 등록]
+    Global --> Idle{대기 상태}
+
+    %% 3단계: 외부 호출 및 구성
+    Idle -- "외부 스크립트 호출" --> Trigger[showGlobalModal message, onConfirm]
+    Trigger --> Config[메시지 삽입 & 이벤트 핸들러 바인딩]
+    Config --> Show[모달 노출: display flex]
+
+    %% 4-5단계: 사용자 선택 분기
+    Show --> Choice{사용자 선택}
+
+    %% 예(확인) 선택
+    Choice -- "확인 버튼" --> Exec[closeModal 실행 후 onConfirm 콜백 실행]
+    Exec -- "예: 로그인 유도" --> Redirect[로그인 페이지 이동]
+    Exec -- "예: 미구현 안내" --> Main[메인 이동 등]
+
+    %% 아니오/닫기 선택
+    Choice -- "취소/X/배경 클릭" --> Cancel[closeModal 실행: 추가 동작 없음]
+    
+    %% 종료
+    Redirect & Main & Cancel --> End([종료])
+```
+
 * 아이콘 클릭 시 메인 컬러 변경 및 드롭다운 메뉴(마이페이지, 로그아웃) 노출.
 * 드롭다운 외 영역 클릭 시 닫기(Outside Click) 기능 구현.
 
 
 * **푸터 (Footer)**
-* <!--figcaption -->
-* 디자인 가이드를 준수한 반응형 푸터 구현.
+> 푸터는 모든 링크와 버튼 클릭을 미구현 기능으로 처리하며, 전역 확인 모달을 통해 사용자 선택에 따라 현재 페이지 유지 또는 메인 페이지 이동으로 분기되는 흐름 구조를 가진다.
+
+```mermaid
+graph LR
+    %% 1~2단계: 초기화 및 렌더링
+    S([진입]) --> Init[renderFooter: DOM 탐색 & 경로 계산]
+    Init --> Content[푸터 HTML 생성 및 삽입]
+
+    %% 3단계: 이벤트 바인딩
+    Content --> Bind[링크/SNS 버튼 클릭 이벤트 바인딩]
+    Bind --> Idle{클릭 대기}
+
+    %% 4단계: 미구현 기능 처리
+    Idle -- "푸터 요소 클릭" --> Prevent[e.preventDefault: 기본 이동 차단]
+    Prevent --> ModalCall[showGlobalModal 호출]
+
+    %% 5단계: 전역 모달 인터랙션
+    ModalCall --> ModalShow[전역 모달: 미구현 안내 메시지 표시]
+    ModalShow --> Choice{사용자 선택}
+
+    %% 최종 분기
+    Choice -- "아니오/닫기" --> Stay[모달 닫기 & 현재 페이지 유지]
+    Choice -- "예(확인)" --> Redirect[goToMain 실행: 메인으로 이동]
+
+    Stay & Redirect --> End([종료])
+```
+
+* 디자인 가이드를 준수한 푸터 구현.
 
 ---
 
