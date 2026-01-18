@@ -486,6 +486,44 @@ Type: 요약 내용 (#이슈번호)
 
 프로젝트 범위 (Project Scope) - 구매자용 서비스
 
+```mermaid
+graph TD
+  Root[<b>구매자용 서비스 PC Desktop</b>]
+  
+  Root --> Auth[<b>1. 회원 인증 및 관리</b>]
+  Root --> Product[<b>2. 상품 브라우징</b>]
+  Root --> Common[<b>3. 공통 컴포넌트</b>]
+
+  %% 1. Auth 세부 항목
+  Auth --> Login[로그인: 유효성 검사 / 실패 처리 / 리다이렉트 / 탭 UI]
+  Auth --> Signup[회원가입: 중복 확인 / 필수값 검증 / 가입 후 이동]
+
+  %% 2. Product 세부 항목
+  Product --> PList[상품 목록: 카드 UI / 상세 페이지 라우팅]
+  Product --> PDetail[상품 상세: 동적 로딩 / 수량 조절 / 가격 계산 / 중복 방지]
+
+  %% 3. Common 세부 항목
+  Common --> GNB[GNB: 검색바 / 권한별 메뉴 분기]
+  Common --> Modal[권한 모달: 로그인 유도]
+  Common --> Dropdown[마이페이지: 컬러 변경 / Outside Click 닫기]
+  Common --> Footer[푸터: 반응형 구현]
+
+  %% 스타일 설정 (고대비)
+  style Root fill:#000,stroke:#000,stroke-width:2px,color:#fff
+  style Auth fill:#fff,stroke:#000,stroke-width:2px,color:#000
+  style Product fill:#fff,stroke:#000,stroke-width:2px,color:#000
+  style Common fill:#fff,stroke:#000,stroke-width:2px,color:#000
+  
+  style Login fill:#f9f9f9,stroke:#333,color:#000
+  style Signup fill:#f9f9f9,stroke:#333,color:#000
+  style PList fill:#f9f9f9,stroke:#333,color:#000
+  style PDetail fill:#f9f9f9,stroke:#333,color:#000
+  style GNB fill:#f9f9f9,stroke:#333,color:#000
+  style Modal fill:#f9f9f9,stroke:#333,color:#000
+  style Dropdown fill:#f9f9f9,stroke:#333,color:#000
+  style Footer fill:#f9f9f9,stroke:#333,color:#000
+```
+
 > 본 프로젝트는 구매자 중심의 이력관리 및 쇼핑 경험을 제공하는 이커머스 플랫폼의 프론트엔드 구현을 목표로 합니다. 사용자 경험(UX)을 고려한 유효성 검사와 상태 관리에 중점을 두었습니다. UI는 PC(Desktop) 환경을 기준으로 설계·구현되었으며, 모바일 및 태블릿 환경은 고려 대상에 포함하지 않습니다.
 
 1. 회원 인증 및 관리 (Auth)
@@ -558,44 +596,43 @@ Type: 요약 내용 (#이슈번호)
 
 개발 일정
 ```mermaid
-%%{init: { 'gantt': { 'barHeight': 25, 'fontSize': 12, 'sectionFontSize': 14, 'numberSectionStyles': 2, 'topPadding': 50, 'leftPadding': 150 } } }%%
+%%{init: { 'gantt': { 'barHeight': 25, 'fontSize': 12, 'sectionFontSize': 14, 'leftPadding': 160, 'gridLineStartPadding': 20 } } }%%
 gantt
-    title Open Market Project - Full History
+    title Open Market Project - Buyer Service (PC)
     dateFormat  YYYY-MM-DD
     axisFormat  %m/%d
 
-    section 1. 기초 인프라
-        Initial commit & Templates         :2026-01-12, 1d
-        폴더 구조 및 기초 CSS(Reset)       :2026-01-13, 1d
-        Variables 정의 및 구조 설계        :2026-01-13, 1d
+    section 1. 인프라 및 환경
+        초기 설정 & Issue Template      :2026-01-12, 1d
+        폴더 구조 및 Reset CSS 적용     :2026-01-13, 1d
+        Design Token(Variables) 정의    :2026-01-13, 1d
 
-    section 2. 공통 UI & Nav
-        GNB 및 검색창 UI 구현              :2026-01-14, 1d
-        사용자 메뉴 & 로그인 연동          :2026-01-14, 1d
-        공통 모달 & 로그인 유도            :2026-01-15, 1d
-        푸터 UI 및 링크 스타일             :2026-01-15, 1d
-        헤더/푸터 컴포넌트 리팩토링        :2026-01-16, 1d
+    section 2. 공통 컴포넌트
+        GNB 및 검색바 UI 구현           :2026-01-14, 1d
+        권한별 메뉴 & 드롭다운 로직     :2026-01-14, 1d
+        Outside Click & 메뉴 스타일     :2026-01-15, 1d
+        로그인 유도 모달 시스템         :2026-01-15, 1d
+        푸터 UI 및 링크 구현            :2026-01-15, 1d
 
-    section 3. 상품 상세
-        Detail Shell & Grid 구축           :2026-01-15, 1d
-        수량 선택 & 가격 계산 엔진         :2026-01-15, 1d
-        상세 페이지 API 연동               :2026-01-16, 1d
-        탭 메뉴 로직 & CSS 적용            :2026-01-16, 1d
+    section 3. 회원 인증 (Auth)
+        로그인 UI 및 라우팅 설정        :2026-01-15, 1d
+        입력값 유효성 & 실패 로직       :2026-01-16, 1d
+        구매/판매 탭 인터페이스         :2026-01-16, 1d
+        ID 중복확인 & 약관 검증         :2026-01-17, 1d
+        회원가입 후 자동 Redirect       :2026-01-17, 1d
 
-    section 4. 인증 및 메인
-        로그인 UI 및 라우팅 수정           :2026-01-15, 1d
-        로그인 API & 유효성 검사           :2026-01-16, 1d
-        메인 상품 목록 & 이동 기능         :2026-01-16, 1d
-        메인 배너 슬라이더(Swiper)         :2026-01-16, 1d
-        회원가입 UI 및 탭 구체화           :2026-01-16, 1d
-        회원가입 고도화 & API 리팩토링     :2026-01-17, 1d
+    section 4. 상품 브라우징
+        상품 상세 Shell & Grid          :2026-01-15, 1d
+        수량 조절 & 가격 계산 엔진      :2026-01-15, 1d
+        목록 UI & 배너 슬라이더         :2026-01-16, 1d
+        상세 API 연동 & 바인딩          :2026-01-16, 1d
+        장바구니 중복 추가 방지         :2026-01-16, 1d
 
-    section 5. 최적화 및 배포
-        GitHub Pages 경로 수정             :2026-01-16, 1d
-        비즈니스 로직 모듈화               :2026-01-16, 1d
-        404 페이지 및 이미지 최적화        :2026-01-17, 1d
-        README 작성 & Favicon 적용         :2026-01-17, 1d
-
+    section 5. 최적화 및 안정화
+        로직 모듈화 및 리팩토링         :2026-01-16, 1d
+        이미지 압축 & 404 대응          :2026-01-17, 1d
+        GitHub Pages 배포 경로 수정     :2026-01-17, 1d
+        README & Favicon 적용           :2026-01-17, 1d
 ```
 
 ---
@@ -677,6 +714,21 @@ root
 | | - | - | `README.md` | 프로젝트 문서화 파일 |
 ---
 
+url 구조
+## 📄 Page URL Specification
+
+| App | Method | URL | Views (File Path) | Note |
+| :--- | :---: | :--- | :--- | :--- |
+| **core** | `GET` | `[https://open-market-project.github.io/open-market-project/](https://open-market-project.github.io/open-market-project/)` | `index.html` | 메인 페이지 (상품 전체 목록 페이지) |
+| **products** | `GET` | `https://open-market-project.github.io/open-market-project/html/products/{product_id}.html` | `products/detail.html` | 상품 상세 페이지 (JS로 ID 처리) |
+| **cart** | `GET` | `https://open-market-project.github.io/open-market-project/html/cart/` | `cart/index.html` | 장바구니 페이지 |
+| **auth** | `GET` | `https://open-market-project.github.io/open-market-project/html/login/` | `login/index.html` | 로그인 페이지 |
+| **auth** | `GET` | `https://open-market-project.github.io/open-market-project/html/signup/` | `signup/index.html` | 회원가입 페이지 |
+| **error** | `GET` | `https://open-market-project.github.io/open-market-project/html/404/` | `404/index.html` | 404 에러 페이지 (GitHub Pages 수동 라우팅) |
+
+> **Note:** > - GitHub Pages는 서버 사이드 라우팅을 지원하지 않으므로 URL 경로는 물리적 디렉토리 구조를 따릅니다.
+> - `{product_id}`와 같은 동적 데이터는 클라이언트 사이드(JS)에서 `URLSearchParams` 등을 이용해 파싱합니다.
+
 ## 6. 협업 중심 트러블슈팅
 
 * Merge Conflict 발생 사례 및 해결 방식
@@ -691,13 +743,4 @@ root
 * 코드 리뷰 문화 정착 과정
 * 문서화와 규칙의 중요성
 * 향후 개선 방향
-
----
-
-## 8. 협업 문서 링크
-
-* 커밋 규칙: CONVENTION.md
-* 협업 가이드: CONTRIBUTING.md
-* 회의 기록: GitHub Wiki
-* 주요 PR 링크 모음
 
