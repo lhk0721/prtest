@@ -169,20 +169,6 @@ Task → Issue 전환: Sprint Board에서 정의된 작업 단위를 GitHub Issu
 * 협업 기준(필수): Wiki → [프로젝트 협업 가이드 (Branch & Commit & PR)](https://github.com/open-market-project/open-market-project/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%98%91%EC%97%85-%EA%B0%80%EC%9D%B4%EB%93%9C-(Branch-&-Commit-&-PR))
 * 사용 가이드(참고): Wiki → [git 명령어 정리 / GitHub Projects 및 Issue PR사용 가이드](https://github.com/open-market-project/open-market-project/wiki/GitHub-Projects-%EB%B0%8F-Issue---PR-%EC%82%AC%EC%9A%A9-%EA%B0%80%EC%9D%B4%EB%93%9C)
 
-<!-- ---
-
-
-
-* main
-  배포 전용 브랜치
-* develop
-  기능 통합 및 테스트 브랜치
-* feature/기능명
-  단위 기능 개발 브랜치
-* hotfix/이슈명
-  긴급 수정 브랜치
-
-브랜치 생성 → 기능 개발 → PR → 코드 리뷰 → develop 병합 → 배포 시 main 병합 흐름을 유지함. -->
 
 ## 2. 실제 적용된 협업 구조 아키텍처
 
@@ -476,11 +462,23 @@ git push origin feature/issue-1
 
 ### 2.1.2 Branch Naming Convention
 
-<!--실제 브랜치 목록 캡쳐 사진-->
-
-브랜치 이름은 프로젝트의 일관성을 위해 아래의 형식을 따릅니다.
+> 브랜치 이름은 프로젝트의 일관성을 위해 아래의 형식을 따릅니다.
 
 `<Type>/<Issue Number 또는 작업 내용>`
+
+<!--실제 브랜치 목록 캡쳐 사진-->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/9789954d-e95b-4530-b16b-42e198b8408a" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        브랜치 운영 현황 (GitFlow 전략 적용)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
 > **Note:** 각 브랜치는 반드시 명확한 **Parent 브랜치**에서 생성해야 하며, 작업 완료 후 해당 Parent 브랜치로 PR을 보냅니다.
 
@@ -501,7 +499,18 @@ git push origin feature/issue-1
 
 ### 2.2 커밋 컨벤션 (Commit Convention)
 
-<!--커밋 목록 사진-->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/a2ca005a-8d90-412d-b459-35d93c64da20" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        Semantic Versioning 및 GitFlow 전략에 따른 커밋 이력
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
 팀 공통 커밋 규칙을 엄격히 적용함.
 
@@ -525,7 +534,18 @@ Type: 요약 내용 (#이슈번호)
 
 ### 1.3 이슈 기반 작업 관리
 
-<!--이슈 목록 사진 추가-->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/4fdee019-6564-434c-b917-5626d14c08e9" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        이슈 기반의 워킹 히스토리
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
 * 모든 작업은 GitHub Issue 생성 후 진행
 * Issue 단위로 feature 브랜치 생성
@@ -536,7 +556,18 @@ Type: 요약 내용 (#이슈번호)
 
 ### 1.4 코드 리뷰 프로세스
 
-<!--PR 사진 -->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/eb1651af-0b3d-4f05-86c4-8ccbdfd2eea3" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        gitflow 전략에 따른 PR 히스토리
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
 
 * PR 생성 시 Reviewer 지정 필수
 * 병합을 위해서는 모든 Reviewer 리뷰 및 승인 필요
