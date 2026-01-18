@@ -556,6 +556,50 @@ Type: 요약 내용 (#이슈번호)
 
 ---
 
+개발 일정
+```mermaid
+%%{init: { 'gantt': { 'barHeight': 25, 'fontSize': 12, 'sectionFontSize': 14, 'numberSectionStyles': 2, 'topPadding': 50, 'leftPadding': 150 } } }%%
+gantt
+    title Open Market Project - Full History
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%d
+
+    section 1. 기초 인프라
+        Initial commit & Templates         :2026-01-12, 1d
+        폴더 구조 및 기초 CSS(Reset)       :2026-01-13, 1d
+        Variables 정의 및 구조 설계        :2026-01-13, 1d
+
+    section 2. 공통 UI & Nav
+        GNB 및 검색창 UI 구현              :2026-01-14, 1d
+        사용자 메뉴 & 로그인 연동          :2026-01-14, 1d
+        공통 모달 & 로그인 유도            :2026-01-15, 1d
+        푸터 UI 및 링크 스타일             :2026-01-15, 1d
+        헤더/푸터 컴포넌트 리팩토링        :2026-01-16, 1d
+
+    section 3. 상품 상세
+        Detail Shell & Grid 구축           :2026-01-15, 1d
+        수량 선택 & 가격 계산 엔진         :2026-01-15, 1d
+        상세 페이지 API 연동               :2026-01-16, 1d
+        탭 메뉴 로직 & CSS 적용            :2026-01-16, 1d
+
+    section 4. 인증 및 메인
+        로그인 UI 및 라우팅 수정           :2026-01-15, 1d
+        로그인 API & 유효성 검사           :2026-01-16, 1d
+        메인 상품 목록 & 이동 기능         :2026-01-16, 1d
+        메인 배너 슬라이더(Swiper)         :2026-01-16, 1d
+        회원가입 UI 및 탭 구체화           :2026-01-16, 1d
+        회원가입 고도화 & API 리팩토링     :2026-01-17, 1d
+
+    section 5. 최적화 및 배포
+        GitHub Pages 경로 수정             :2026-01-16, 1d
+        비즈니스 로직 모듈화               :2026-01-16, 1d
+        404 페이지 및 이미지 최적화        :2026-01-17, 1d
+        README 작성 & Favicon 적용         :2026-01-17, 1d
+
+```
+
+---
+
 ## 4. 개발 환경 및 배포
 
 ### 4.1 개발 환경
