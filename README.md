@@ -650,9 +650,20 @@ gantt
 
 ### 4.2 배포 정보
 
-* **배포 URL:** [https://open-market-project.github.io/open-market-project/](https://open-market-project.github.io/open-market-project/)
+* **배포 URL:**
+> **Note:** > - GitHub Pages는 서버 사이드 라우팅을 지원하지 않으므로 URL 경로는 물리적 디렉토리 구조를 따릅니다.
+> `{product_id}`와 같은 동적 데이터는 클라이언트 사이드(JS)에서 `URLSearchParams` 등을 이용해 파싱합니다.
 
-* **테스트 계정**
+
+| App | Method | URL | Views (File Path) | Note |
+| :--- | :---: | :--- | :--- | :--- |
+| **core** | `GET` | [https://open-market-project.github.io/open-market-project/](https://open-market-project.github.io/open-market-project/) | `index.html` | 메인 페이지 (상품 전체 목록 페이지) |
+| **products** | `GET` | [https://open-market-project.github.io/open-market-project/html/products/{product_id}.html](https://open-market-project.github.io/open-market-project/html/products/detail.html?id=78) | `products/detail.html` | 상품 상세 페이지 (JS로 ID 처리) |
+| **auth** | `GET` | [https://open-market-project.github.io/open-market-project/html/login/](https://open-market-project.github.io/open-market-project/html/login/index.html) | `login/index.html` | 로그인 페이지 |
+| **auth** | `GET` | [https://open-market-project.github.io/open-market-project/html/signup/](https://open-market-project.github.io/open-market-project/html/signup/index.html) | `signup/index.html` | 회원가입 페이지 |
+| **error** | `GET` | [https://open-market-project.github.io/open-market-project/html/404/](https://open-market-project.github.io/open-market-project/html/404/) | `404/index.html` | 404 에러 페이지 (GitHub Pages 수동 라우팅) |
+
+> **테스트 계정**
 프로젝트의 모든 기능을 즉시 확인해 보실 수 있도록 구매자 테스트 계정을 제공합니다.
 
 | 구분 | 아이디 (ID) | 비밀번호 (PW) |
@@ -714,20 +725,6 @@ root
 | | - | - | `README.md` | 프로젝트 문서화 파일 |
 ---
 
-url 구조
-## 📄 Page URL Specification
-
-| App | Method | URL | Views (File Path) | Note |
-| :--- | :---: | :--- | :--- | :--- |
-| **core** | `GET` | `[https://open-market-project.github.io/open-market-project/](https://open-market-project.github.io/open-market-project/)` | `index.html` | 메인 페이지 (상품 전체 목록 페이지) |
-| **products** | `GET` | `https://open-market-project.github.io/open-market-project/html/products/{product_id}.html` | `products/detail.html` | 상품 상세 페이지 (JS로 ID 처리) |
-| **cart** | `GET` | `https://open-market-project.github.io/open-market-project/html/cart/` | `cart/index.html` | 장바구니 페이지 |
-| **auth** | `GET` | `https://open-market-project.github.io/open-market-project/html/login/` | `login/index.html` | 로그인 페이지 |
-| **auth** | `GET` | `https://open-market-project.github.io/open-market-project/html/signup/` | `signup/index.html` | 회원가입 페이지 |
-| **error** | `GET` | `https://open-market-project.github.io/open-market-project/html/404/` | `404/index.html` | 404 에러 페이지 (GitHub Pages 수동 라우팅) |
-
-> **Note:** > - GitHub Pages는 서버 사이드 라우팅을 지원하지 않으므로 URL 경로는 물리적 디렉토리 구조를 따릅니다.
-> - `{product_id}`와 같은 동적 데이터는 클라이언트 사이드(JS)에서 `URLSearchParams` 등을 이용해 파싱합니다.
 
 ## 6. 협업 중심 트러블슈팅
 
