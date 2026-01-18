@@ -643,7 +643,7 @@ Type: 요약 내용 (#이슈번호)
 * GitHub 기반 협업 프로세스 실습 <!--github 이미지-->
 * 커밋 컨벤션과 PR 중심 개발 문화 정착 <!---->
 * 역할 분담 기반 프론트엔드 협업 경험 축적 <!--assembly line-->
-  
+
 
 ---
 
@@ -892,6 +892,44 @@ root
 | | - | - | `README.md` | 프로젝트 문서화 파일 |
 ---
 
+
+## 검수 절차
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/a2c46ca2-f853-451e-a978-f7e3c8eed482" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        SSOT 기반 검수
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+> Single Source of Truth (SSOT) 기반 검수 체계
+
+본 프로젝트의 산출물은 자동화 테스트와 더불어 PPT 단일 정본(Single Source of Truth)을 기준으로 관리되었으며, 검수의 핵심 기준은 기획 의도 충족 여부, 명세서 범위 준수 여부, UI/UX 완성도였다.
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/0d85d857-c82f-4e5f-8d46-84c8c7141167" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        Lighthouse를 이용한 산출물 품질 측정 (개선 전) 
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+> Lighthouse 기반 자동 품질 검수 및 개선 수행
+
+Lighthouse를 활용해 산출물의 품질을 자동 검수했다.
+성능, 접근성, SEO, 베스트 프랙티스 기준으로 권고사항을 도출했다.
+권고사항을 반영해 개선 작업을 수행하고 품질을 향상시켰다.
 
 ## 6. 협업 중심 트러블슈팅
 
