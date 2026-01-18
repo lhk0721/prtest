@@ -697,7 +697,38 @@ graph TD
 
 > 사용자 식별과 권한 관리를 위한 핵심 기능을 포함합니다.
 
+```mermaid
+flowchart TD
+    Login[로그인 성공] --> Set["storage: 토큰 저장"]
+    Set --> Path["path: 루트 경로 계산"]
+    Path --> Redirect["메인으로 이동"]
+    
+    Auth{인증 확인?} -- "Yes" --> Service[서비스 이용]
+    Auth -- "No" --> Logout["storage: 토큰 삭제"]
+```
+
 * **로그인 페이지**
+
+> “본 모듈(auth.js)은 구매자·판매자 회원가입 및 관련 유효성 검증을 위한 API 통신 레이어를 제공한다. 실제 회원가입 UI 및 입력 제어는 별도 페이지 스크립트에서 수행된다.”
+
+```mermaid
+graph LR
+    S([Start]) --> Init[초기화/캐싱]
+    Init --> Event{사용자 입력}
+
+    %% 탭 전환
+    Event -- 탭 클릭 --> Tab[상태 변경/에러 초기화] --> Event
+
+    %% 로그인 제출
+    Event -- 제출 --> Val{입력값 확인}
+    Val -- 미입력 --> E1[입력 요청] --> End([End])
+    Val -- 입력완료 --> API[API 호출]
+
+    %% API 결과
+    API --> Res{결과}
+    Res -- 성공 --> Go[Redirect] --> End
+    Res -- 실패 --> E2[실패 메시지] --> End
+```
 <!--figcaption -->
 * 아이디/비밀번호 미입력 및 불일치 시 실시간 **경고 문구(Validation)** 노출.
 * 로그인 실패 시 해당 입력창 자동 **Focus 이벤트** 및 입력값 초기화 처리.
@@ -705,7 +736,29 @@ graph TD
 * 구매자/판매자 탭 분리를 통한 맞춤형 로그인 인터페이스 제공.
 
 <!--figcaption -->
-* **회원가입 페이지**
+**회원가입 페이지**
+> “회원가입 UI 로직은 signup.js에서 입력·검증·상태 관리를 담당하고, 실제 회원가입 및 유효성 검증 요청은 auth.js의 공통 API 레이어를 통해 서버와 통신한다. 전체 흐름은 입력 → 검증 → API 호출 → 결과 분기 구조로 구성된다.”
+```mermaid
+graph LR
+    S([시작]) --> Init[초기화 및 버튼 비활성]
+    Init --> Input{입력 및 탭 선택}
+
+    %% 실시간 검증 및 서버 검증
+    Input -- "입력/탭변경" --> Val[실시간 Regex 검증]
+    Val -- "중복확인/인증" --> SrvVal[서버 검증 API]
+    SrvVal --> Check{모든 조건 통과?}
+    Val --> Check
+
+    %% 제출 활성화 및 처리
+    Check -- No --> Input
+    Check -- Yes --> Active[가입 버튼 활성화]
+    
+    Active -- 클릭 --> Submit[Payload 구성 및 API 호출]
+    Submit --> Res{결과}
+    
+    Res -- 성공 --> Success[Alert & Redirect] --> End([종료])
+    Res -- 실패 --> Error[에러 메시지 노출] --> Input
+```
 * 아이디 중복 확인 기능 및 실시간 유효성 메시지 구현.
 * 이용약관 동의 체크 및 필수 입력값 검증 후 가입 활성화.
 * 가입 완료 후 로그인 페이지로 자동 이동.
@@ -714,16 +767,63 @@ graph TD
 
 ## 2. 상품 브라우징 (Product)
 
-상품 정보를 탐색하고 상세 내용을 확인하는 영역입니다.
+> 상품 정보를 탐색하고 상세 내용을 확인하는 영역입니다.
 
-* **상품 목록 페이지**
- <!--figcaption -->
+**상품 목록 페이지**
+> “상품 목록 페이지는 main.js에서 목록 렌더링과 UI 이벤트를 담당하고, 상품 데이터 조회는 productAPI를 통해 서버와 통신한다. 데이터 조회 → 카드 생성 → 사용자 클릭 → 상세 페이지 이동으로 이어지는 좌→우 가로 흐름 구조를 가진다.”
+
+```mermaid
+graph LR
+    S([진입]) --> Init[페이지 초기화 & DOM 캐싱]
+    Init --> Load{병렬 실행}
+
+    %% 상품 목록 흐름
+    Load --> Fetch[상품 목록 API 호출]
+    Fetch --> Data{성공?}
+    Data -- Yes --> Render[Fragment 생성 & 카드 렌더링]
+    Data -- No --> Err[에러 Alert]
+
+    %% 슬라이더 흐름
+    Load --> Slider[슬라이더 초기화 & 타이머 시작]
+    Slider --> SEvent[이전/다음/호버 인터랙션]
+
+    %% 사용자 액션
+    Render --> Click[상품 카드 클릭]
+    Click --> Nav[상세 페이지 이동]
+```
 * 카드 타입 UI를 통해 상품 판매자, 상품명, 가격 정보 노출.
 * 상품 클릭 시 해당 상품의 상세 페이지로 라우팅.
 
 
-* **상품 상세 페이지**
-<!--figcaption -->
+**상품 상세 페이지**
+> “상품 상세 페이지는 detail.js에서 화면 상태·이벤트를 제어하고, 상품 조회·장바구니·주문 생성 요청은 productAPI를 통해 서버와 통신한다. 사용자 입력 → 상태 변경 → API 호출 → 결과 분기 구조로 구성된 가로 흐름이다.”
+
+```mermaid
+graph LR
+    S([진입]) --> Init[ID 추출 & 초기화]
+    Init --> Fetch[상품 데이터 요청]
+    Fetch --> Bind[UI 데이터 바인딩]
+    Bind --> Idle{사용자 작업}
+
+    %% 수량 조절
+    Idle -- "+/- 클릭" --> Qty[수량/총액 계산] --> Idle
+
+    %% 바로 구매
+    Idle -- "바로 구매" --> Auth1{로그인?}
+    Auth1 -- No --> Modal[로그인 모달]
+    Auth1 -- Yes --> Order[주문 정보 저장] --> GoOrder[주문서 이동]
+
+    %% 장바구니
+    Idle -- "장바구니" --> Auth2{로그인?}
+    Auth2 -- No --> Modal
+    Auth2 -- Yes --> Role{구매자?}
+    Role -- No --> Alert[판매자 불가 안내]
+    Role -- Yes --> CartAPI[장바구니 API 호출] --> Res[결과 Alert]
+
+    %% 에러 처리
+    Fetch -.-> Error[API 에러 발생] --> AlertError[에러 메시지 출력]
+```
+
 * `productId` 파라미터를 기반으로 한 동적 상품 데이터 로딩.
 * **수량 조절 시스템**: `+`, `-` 버튼을 통한 수량 변경 및 재고 수량 초과 시 `+` 버튼 비활성화.
 * **실시간 가격 계산**: 선택한 수량 및 옵션에 따른 총 결제 금액 실시간 반영.
@@ -733,23 +833,75 @@ graph TD
 
 ## 3. 공통 컴포넌트 (Common)
 
-전체 페이지에서 일관된 UX를 제공하기 위한 공통 요소입니다.
-<!--figcaption -->
-* **GNB (Global Navigation Bar)**
-* **검색 바**: 검색 UI 구현 (기능은 추후 확장 예정).
+> 전체 페이지에서 일관된 UX를 제공하기 위한 공통 요소입니다.
+
+**GNB (Global Navigation Bar)**
+> “GNB는 gnb.js에서 로그인 상태와 사용자 유형을 기준으로 UI를 분기 렌더링하며, 모든 사용자 액션은 로컬 인증 상태(storage)를 기준으로 페이지 이동 또는 모달 노출로 처리된다. 서버 통신 없이 상태 기반으로 동작하는 좌→우 흐름 구조다.”
+
+```mermaid
+    graph LR
+    S([시작]) --> Init[GNB 삽입 & 초기화]
+    Init --> Auth[storage.js에서 인증 상태 확인]
+    Auth --> Branch{로그인 상태?}
+
+    %% 분기 1: 비로그인
+    Branch -- No --> Guest[로그인/장바구니 노출]
+    Guest --> Cart1[장바구니 클릭 -> 로그인 유도]
+
+    %% 분기 2: 로그인 완료
+    Branch -- Yes --> Type{사용자 타입?}
+    
+    Type -- BUYER --> Buyer[마이페이지/장바구니/로그아웃]
+    Type -- SELLER --> Seller[마이페이지/판매자센터/로그아웃]
+
+    %% 공통 액션
+    Buyer & Seller --> Dropdown[드롭다운 토글]
+    Dropdown --> Logout[로그아웃 클릭 -> Confirm -> 초기화]
+    Dropdown --> MyPage[마이페이지 이동]
+    
+    %% 기타
+    Init -.-> Outside[외부 클릭 -> 드롭다운 닫기]
+```
+
+**검색 바**: 검색 UI 구현 (프로젝트 범위 내)
 * **로그인 상태별 분기**:
-* 비로그인/구매 회원: 검색창, 장바구니 버튼 노출.
-* 판매 회원: 마이페이지, 판매자 센터 버튼 노출.
+  비로그인/구매 회원: 검색창, 장바구니 버튼 노출.
+  판매 회원: 마이페이지, 판매자 센터 버튼 노출.
 
 
 
 
-* **권한 제어 모달 (Modal)**
-* <!--figcaption -->
+**권한 제어 모달 (Modal)**
+> 로그인 유도 모달은 외부 트리거에 의해 표시되며, 사용자 선택에 따라 단순 종료 또는 로그인 페이지로 이동하는 좌→우 단일 책임 흐름 구조를 가진다.
+```mermaid
+graph LR
+    %% 시작 및 초기화
+    S1([시스템/외부 호출]) --> Init[이벤트 바인딩: 취소/X/배경/확인]
+    Init --> Trigger{호출원: window.openModal}
+
+    %% 모달 노출
+    Trigger --> Show[모달 표시: display flex]
+
+    %% 사용자 선택 분기
+    Show --> Choice{사용자 액션}
+
+    %% 취소 경로
+    Choice -- "취소/X/배경 클릭" --> Close[window.closeModal: display none]
+    Close --> End([종료])
+
+    %% 로그인 확인 경로
+    Choice -- "예(로그인) 클릭" --> Prep[로그인 경로 계산: getRootPrefix]
+    Prep --> Redirect[로그인 페이지 이동]
+
+    %% 특수 케이스: 뒤로가기
+    S2([뒤로 가기 발생]) --> PageShow[pageshow 이벤트 감지]
+    PageShow -- "persisted true" --> Close
+```
+
 * 비로그인 사용자가 장바구니 담기, 바로 구매 시도 시 로그인 유도 모달 노출.
 
 
-* **마이페이지 드롭다운**
+**마이페이지 드롭다운**
 * <!--figcaption -->
 * 아이콘 클릭 시 메인 컬러 변경 및 드롭다운 메뉴(마이페이지, 로그아웃) 노출.
 * 드롭다운 외 영역 클릭 시 닫기(Outside Click) 기능 구현.
