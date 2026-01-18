@@ -9,11 +9,11 @@
 
 ## 👥 팀원 소개 및 역할
 
-| 프로필 | 이름 | 담당 영역 | 핵심 책임 | 주요 개발 산출물 |
+| 프로필 | 이름  | 담당 영역 | 핵심 책임 | 주요 개발 산출물 |
 | :---: | :--- | :--- | :--- | :--- |
-| <img src="https://github.com/user-attachments/assets/8bc730e8-2ec9-447f-8e16-939cb0f73f20" width="100" height="120" style="object-fit: fill;"> | **이현규** | Core Logic | 팀장,상품 단위 핵심 비즈니스 로직 구현 | 상품 상세 UI, API 데이터 바인딩, 실시간 가격/수량 계산 로직, README 작성 |
-| <img src="https://github.com/user-attachments/assets/c545fab1-2e81-4e10-b1b0-419ca23b294f" width="100" height="120" style="object-fit: cover;"> | **조서연** | Foundation | 인증 시스템 총괄 및 프로젝트 베이스라인 구축 | 초기 구조 설계, CSS 변수/리셋, 배포 환경 구축, auth.js 기반 인증 로직 및 UI |
-| <img src="https://github.com/user-attachments/assets/eab93b89-329d-450c-aaef-8213bf5f1cc0" width="100" height="120" style="object-fit: cover;"> | **강수민** | UX & QA / Layout | 전역 레이아웃 및 인터랙션 일관성 확보 | GNB(검색)·Footer, 상품 목록 UI, 마이페이지, 전사 QA 및 시연 자료 제작 |
+| <img src="https://github.com/user-attachments/assets/8bc730e8-2ec9-447f-8e16-939cb0f73f20" width="100" height="120" style="object-fit: cover;"> |**이&nbsp;현&nbsp;규** | Core Logic | 팀장,상품 단위 핵심 비즈니스 로직 구현 | 상품 상세 UI, API 데이터 바인딩, 실시간 가격/수량 계산 로직, README 작성 |
+| <img src="https://github.com/user-attachments/assets/c545fab1-2e81-4e10-b1b0-419ca23b294f" width="100" height="120" style="object-fit: cover;"> | **조&nbsp;서&nbsp;연** | Foundation | 인증 시스템 총괄 및 프로젝트 베이스라인 구축 | 초기 구조 설계, CSS 변수/리셋, 배포 환경 구축, auth.js 기반 인증 로직 및 UI |
+| <img src="https://github.com/user-attachments/assets/eab93b89-329d-450c-aaef-8213bf5f1cc0" width="100" height="120" style="object-fit: cover;"> | **강&nbsp;수&nbsp;민** | UX & QA / Layout | 전역 레이아웃 및 인터랙션 일관성 확보 | GNB(검색)·Footer, 상품 목록 UI, 마이페이지, 전사 QA 및 시연 자료 제작 |
 
 > **Note:** 기존 팀원 B의 중도 하차로 인해, 해당 담당 역할(Layout 및 메인 화면 등)은 팀원 강수민 님이 전담하여 완수하였습니다.
 
@@ -569,11 +569,63 @@ Type: 요약 내용 (#이슈번호)
   </div>
 </div>
 
-* PR 생성 시 Reviewer 지정 필수
-* 병합을 위해서는 모든 Reviewer 리뷰 및 승인 필요
-* 리뷰 기준
+<br>
 
-  <!--수정사항 전달 사진-->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/d4dda057-d0e3-4f95-a928-47128bf81030" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        34번 Pull-Request <br> (PR 생성 시 Reviewer 지정 필수)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/23ea3963-09a7-4c0c-a9e0-48b0b6ac6a21" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        34번 Review-Approve-Merge 절차 <br> (병합을 위해서는 모든 Reviewer 리뷰 및 승인 필요)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/9d6cf598-5913-4221-abb9-2e75a9072591" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        코드 리뷰 시 변동사항 확인 절차
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/d73ad274-ce99-4e8b-8205-63d39815e74b" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        코드 리뷰 수정사항 공유
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+> 코드 라뷰 사앤 더움 서헝둘울 즁점적으로 검토하였습니다.
 
   * 코드 가독성 및 컨벤션 준수 여부
   * 공통 컴포넌트 영향도
