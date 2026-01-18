@@ -7,24 +7,90 @@
 
 ## 0. 팀 구성 및 역할 분담
 
-<!-- 실제 사진 삽입 -->
+## 👥 팀원 소개 및 역할
 
-* 팀장
-  일정 관리, 브랜치 전략 관리, 공통 구조 설계
+| 프로필 | 이름 | 담당 영역 | 핵심 책임 | 주요 개발 산출물 |
+| :---: | :--- | :--- | :--- | :--- |
+| <img src="https://github.com/user-attachments/assets/8bc730e8-2ec9-447f-8e16-939cb0f73f20" width="100" height="120" style="object-fit: fill;"> | **이현규** | Core Logic | 팀장,상품 단위 핵심 비즈니스 로직 구현 | 상품 상세 UI, API 데이터 바인딩, 실시간 가격/수량 계산 로직, README 작성 |
+| <img src="https://github.com/user-attachments/assets/c545fab1-2e81-4e10-b1b0-419ca23b294f" width="100" height="120" style="object-fit: cover;"> | **조서연** | Foundation | 인증 시스템 총괄 및 프로젝트 베이스라인 구축 | 초기 구조 설계, CSS 변수/리셋, 배포 환경 구축, auth.js 기반 인증 로직 및 UI |
+| <img src="https://github.com/user-attachments/assets/eab93b89-329d-450c-aaef-8213bf5f1cc0" width="100" height="120" style="object-fit: cover;"> | **강수민** | UX & QA / Layout | 전역 레이아웃 및 인터랙션 일관성 확보 | GNB(검색)·Footer, 상품 목록 UI, 마이페이지, 전사 QA 및 시연 자료 제작 |
 
-* 팀원 A
-  상품 목록 페이지 및 UI 구현
-
-* 팀원 B
-  상품 상세 페이지 및 가격·수량 로직
+> **Note:** 기존 팀원 B의 중도 하차로 인해, 해당 담당 역할(Layout 및 메인 화면 등)은 팀원 강수민 님이 전담하여 완수하였습니다.
 
 ---
+## 협업 및 프로젝트 관리 (Collaboration & Process)
+
+```mermaid
+graph TD
+    %% 1단계: 사전 기획
+    subgraph Phase1 [1. 사전 기획]
+        A[프로젝트 명세서 분석] --> B[요구사항 작업 단위 분해]
+        B --> C[팀 공통 언어로 범위 정렬]
+    end
+
+    %% 2단계: Sprint Board
+    subgraph Phase2 [2. Sprint Board 설계]
+        C --> D[Sprint Board 작성]
+        D --> E{작업 세부 정의}
+        E -->|Who| E1[담당자 지정]
+        E -->|When| E2[선후 관계/일정]
+        E -->|Priority| E3[우선순위 설정]
+    end
+
+    %% 3단계: GitHub Kanban
+    subgraph Phase3 [3. GitHub Kanban 계승]
+        E1 & E2 & E3 --> F[GitHub Issue로 전환]
+        F --> G[Kanban 컬럼 매핑]
+        G --> G1[To Do]
+        G --> G2[In Progress]
+        G --> G3[Review]
+        G --> G4[Done]
+    end
+
+    %% 결과
+    Phase3 --> H[점진적 협업 프로세스 고도화]
+
+    %% Style
+    style Phase1 fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Phase2 fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style Phase3 fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style H fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,stroke-dasharray: 5 5
+```
+> 본 프로젝트는 단순한 기능 구현을 넘어, 팀의 협업 시스템을 단계적으로 설계하고 검증하는 과정에 중점을 두었습니다. 프로세스 고도화를 통해 효율적인 개발 환경을 구축했습니다.
+
+1. 사전 기획 및 요구사항 분해
+목적: 기술 구현 전, 프로젝트 명세서를 기반으로 요구사항을 작업 단위(Task)로 분해하고 팀 공통의 개발 범위를 정렬
+
+핵심: 단순 논의에 그치지 않고 전체 개발 범위를 팀의 공통 언어로 정의하여 작업의 모호성 제거
+
+2. Sprint Board를 통한 구조적 설계
+설계 문서화: 초기 Sprint Board를 단순 일정 관리 도구가 아닌, 프로젝트 전반의 구조를 공유하기 위한 설계 문서로 활용
+
+다차원적 정의: 각 작업 단위별로 담당자, 선행 작업, 우선순위, 진행 상태를 정의하여 "무엇을, 언제까지, 누가, 왜 해야 하는가"에 대한 명확한 기준 수립
+
+3. GitHub 협업 프로세스로의 점진적 계승
+GitHub 기반의 협업 도구(Issue, Branch Strategy, PR)를 도입하며 기존에 합의된 작업 구조를 유기적으로 연결했습니다.
+
+Task → Issue 전환: Sprint Board에서 정의된 작업 단위를 GitHub Issue로 생성하여 추적성 강화
+
+상태 매핑: 기존 진행 상태를 Kanban Board의 컬럼(To Do / In Progress / Review / Done)으로 자연스럽게 매핑
+
+연속성 유지: 새로운 도구 도입 시 계획을 재수립하는 대신, 기존의 작업 분해 방식과 책임 범위를 그대로 계승하여 도구 변경에 따른 혼선 방지 및 협업 방식의 고도화 실현
+
+4. 프로세스의 의의
+도구의 기능에 의존하기보다 팀의 합의된 워크플로우를 먼저 설계하고, 이를 도구에 맞게 발전시켜 나가는 과정을 통해 협업의 효율성을 극대화했습니다. 이는 프로젝트 관리 역량을 단계적으로 검증하고 팀워크를 견고히 하는 기반이 되었습니다.
+
+
 
 ## 1. 협업 프로세스  (Collaboration Process)
 
 > 협업 시스템 설계 배경
 
-<!-- wiki_home 캡쳐 사진 추가 -->
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/804dad2a-c005-4801-9e4d-8c3d697da04c" alt="협업 시스템 설계">
+  <br>
+  <em><b> 협업 시스템 설계 및 커뮤니티 가이드라인 구조 </b></em>
+</p>
 
 오픈마켓 구현은 결과물이 아니라 학습을 위한 매개체라는 점에 팀 전원이 사전에 합의했다. 이 프로젝트의 최우선 목표는 기능 완성이 아니라 GitHub 기반 협업 시스템을 실제로 설계·운영·검증하는 경험을 축적하는 것이었다.
 
@@ -64,23 +130,41 @@
 
 ### 1.1.3 보조 가이드 문서의 목적
 
-다음 문서들은 “규칙”이 아니라 **반복 숙달과 사용 통일성**을 위한 참고 가이드다.
+> 다음 문서들은 “규칙”이 아니라 **반복 숙달과 사용 통일성**을 위한 참고 가이드다.
 
-<!-- 병렬 사진 삽입 -->
+<figure>
+  <figcaption align="center">
+    <b>다음 문서들은 “규칙”이 아니라 반복 숙달과 사용 통일성을 위한 참고 가이드다.</b>
+  </figcaption>
 
-* git 명령어 정리
+  <div align="center" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+    <img src="https://github.com/user-attachments/assets/665c2502-7a73-475c-9774-76928801700e" alt="git 명령어 정리" width="48%">
+    <img src="https://github.com/user-attachments/assets/ca3546a8-0df4-4d63-8d4d-97b68179d432" alt="GitHub Projects 및 PR 사용 가이드" width="48%">
+  </div>
+</figure>
+
+<br>
+
+* **git 명령어 정리**
   Git 사용 경험이 적은 팀원도 동일한 흐름으로 작업할 수 있도록 기본 명령어를 정리했다.
 
-* GitHub Projects 및 Issue / PR 사용 가이드
+* **GitHub Projects 및 Issue / PR 사용 가이드**
   이슈 생성, Projects 관리, PR 생성 과정을 단계별로 정리해 작업 관리 방식을 통일했다.
-
-이 문서들은 협업 기준을 강제하기 위한 것이 아니라,
-**팀 전체의 작업 리듬을 맞추기 위한 실무 보조 자료**로 활용한다.
 
 > Quick Reference
 
 * Wiki
-<!-- QR 삽입 -->
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 25px; border: 1px solid #e1e4e8; border-radius: 12px; background-color: #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.08);">
+    <img src="https://github.com/user-attachments/assets/26238ec4-195d-42e2-8ce8-1f271136c54d" alt="Wiki QR Code" width="500" style="border-radius: 6px;">
+    <p style="margin-top: 20px; margin-bottom: 5px; font-size: 16px; font-weight: 600; color: #24292e;">
+      위키 페이지로 바로 접속하기
+    </p>
+    <p style="margin: 0; font-size: 13px; color: #586069;">
+      스마트폰 카메라로 위 QR 코드를 스캔해주세요.
+    </p>
+  </div>
+</div>
 
 * 협업 기준(필수): Wiki → [프로젝트 협업 가이드 (Branch & Commit & PR)](https://github.com/open-market-project/open-market-project/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%98%91%EC%97%85-%EA%B0%80%EC%9D%B4%EB%93%9C-(Branch-&-Commit-&-PR))
 * 사용 가이드(참고): Wiki → [git 명령어 정리 / GitHub Projects 및 Issue PR사용 가이드](https://github.com/open-market-project/open-market-project/wiki/GitHub-Projects-%EB%B0%8F-Issue---PR-%EC%82%AC%EC%9A%A9-%EA%B0%80%EC%9D%B4%EB%93%9C)
