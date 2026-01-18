@@ -1200,10 +1200,63 @@ root
 
 <div align="center" style="margin: 30px 0;">
   <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/313d211c-03d9-47f8-a744-7f1fe7e01269" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        SSOT 기반 검수 (표지 슬라이드)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
     <img src="https://github.com/user-attachments/assets/a2c46ca2-f853-451e-a978-f7e3c8eed482" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
     <div style="margin-top: 15px; text-align: left;">
       <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
-        SSOT 기반 검수
+        검수 이력 추적형 버전 관리 (슬라이드)
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/a2c46ca2-f853-451e-a978-f7e3c8eed482" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        구역별 이슈 트래킹
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/a2c46ca2-f853-451e-a978-f7e3c8eed482" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        각 이슈 (슬라이드) 예시 1
+      </p>
+      <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <div style="display: inline-block; padding: 20px; border: 1px solid #d0d7de; border-radius: 10px; background-color: #f6f8fa; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <img src="https://github.com/user-attachments/assets/a2c46ca2-f853-451e-a978-f7e3c8eed482" alt="Git Branch List" width="400" style="border-radius: 6px; border: 1px solid #e1e4e8;">
+    <div style="margin-top: 15px; text-align: left;">
+      <p style="margin: 0; font-size: 15px; font-weight: 700; color: #1f2328;">
+        각 이슈 (슬라이드) 예시 2
       </p>
       <p style="margin: 5px 0 0; font-size: 13px; color: #636c76; line-height: 1.5;">
       </p>
